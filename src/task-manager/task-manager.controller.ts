@@ -19,7 +19,7 @@ export class TaskManagerController {
     return this.taskManagerService.findAll();
   }
 
-  @Get("toggle-completed/:id")
+  @Get("toggle-complete/:id")
   toggleComplete(@Param("id") id: number) {
     return this.taskManagerService.toggleComplete(id);
   }
