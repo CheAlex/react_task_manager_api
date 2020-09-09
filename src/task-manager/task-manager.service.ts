@@ -22,15 +22,16 @@ export class TaskManagerService {
   async toggleComplete(id: number)  {
     let task = await this.taskRepository.findOneOrFail(id);
 
-    task.isCompleted = !task.isCompleted;
+    task.toggleComplete();
 
     await this.taskRepository.save(task);
   }
 
   create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const task = new Task();
-    task.title = createTaskDto.title;
-    task.isCompleted = createTaskDto.isCompleted;
+    const task = new Task(
+      createTaskDto.title,
+      createTaskDto.isCompleted
+    );
 
     return this.taskRepository.save(task);
   }

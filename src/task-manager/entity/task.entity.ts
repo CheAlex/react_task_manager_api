@@ -11,4 +11,13 @@ export class Task {
 
   @Column({default: true})
   isCompleted: boolean;
+
+  constructor(title: string, isCompleted: boolean) {
+    this.title = title;
+    this.isCompleted = isCompleted;
+  }
+
+  toggleComplete = () => {
+    this.isCompleted = !this.isCompleted;
+  }
 }
