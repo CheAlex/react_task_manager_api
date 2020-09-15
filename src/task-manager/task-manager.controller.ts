@@ -15,22 +15,27 @@ export class TaskManagerController {
   constructor(private readonly taskManagerService: TaskManagerService) {}
 
   @Get()
-  findAll(): Promise<Task[]> {
+  findAllAction(): Promise<Task[]> {
     return this.taskManagerService.findAll();
   }
 
-  @Get("toggle-complete/:id")
-  toggleComplete(@Param("id") id: number) {
-    return this.taskManagerService.toggleComplete(id);
+  @Get("mark-complete/:id")
+  markCompleteAction(@Param("id") id: number) {
+    return this.taskManagerService.markComplete(id);
+  }
+
+  @Get("unmark-complete/:id")
+  unmarkCompleteAction(@Param("id") id: number) {
+    return this.taskManagerService.unmarkComplete(id);
   }
 
   @Post()
-  create(@Body() createTaskDto: CreateTaskDto) {
+  createAction(@Body() createTaskDto: CreateTaskDto) {
     return this.taskManagerService.create(createTaskDto);
   }
 
   @Delete(":id")
-  remove(@Param("id") id: number): Promise<void> {
+  removeAction(@Param("id") id: number): Promise<void> {
     return this.taskManagerService.remove(id);
   }
 }

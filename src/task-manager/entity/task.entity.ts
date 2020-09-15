@@ -9,7 +9,7 @@ export class Task {
   @Column()
   title: string;
 
-  @Column({default: true})
+  @Column()
   isCompleted: boolean;
 
   constructor(title: string, isCompleted: boolean) {
@@ -17,7 +17,11 @@ export class Task {
     this.isCompleted = isCompleted;
   }
 
-  toggleComplete = () => {
-    this.isCompleted = !this.isCompleted;
+  markComplete = () => {
+    this.isCompleted = true;
+  };
+
+  unmarkComplete = () => {
+    this.isCompleted = false;
   }
 }

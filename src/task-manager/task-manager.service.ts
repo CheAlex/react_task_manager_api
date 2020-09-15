@@ -19,10 +19,18 @@ export class TaskManagerService {
     });
   }
 
-  async toggleComplete(id: number)  {
+  async markComplete(id: number)  {
     let task = await this.taskRepository.findOneOrFail(id);
 
-    task.toggleComplete();
+    task.markComplete();
+
+    await this.taskRepository.save(task);
+  }
+
+  async unmarkComplete(id: number)  {
+    let task = await this.taskRepository.findOneOrFail(id);
+
+    task.unmarkComplete();
 
     await this.taskRepository.save(task);
   }
